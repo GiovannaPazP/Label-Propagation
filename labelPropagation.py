@@ -71,10 +71,22 @@ def plot(G, rotulos):
     plt.title("Comunidades Detectadas")
     plt.show()
 
+#para comparação de partições
+def normaliza_grupos(rotulos):
+    grupos = {}
+    for no, rotulo in enumerate(rotulos):
+        if rotulo not in grupos:
+            grupos[rotulo] = []
+        grupos[rotulo].append(no)
+
+    grupos_imutaveis = frozenset(frozenset(g) for g in grupos.values())
+    return grupos_imutaveis
+
 def main():
     #np.random.seed(42)
     print(sorted(G.nodes()))
     rotulos = labelPropagation(G, MAXITE)
-    plot(G, rotulos)
+    print(normaliza_grupos(rotulos))
+    #plot(G, rotulos)
 main()
 
