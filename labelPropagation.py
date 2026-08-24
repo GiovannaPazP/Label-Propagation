@@ -40,10 +40,13 @@ def labelPropagation(G, MAXITE):
                 rotulos_vizinhos = rotulos[vizinhos] #vizinhos é o indice, pega os valores de rotulos correspondente a essa lista de indice -- só numpy
                 print(rotulos_vizinhos)
                 print()
+                novo_rotulo = calcula_moda(rotulos_vizinhos)
+                if novo_rotulo != rotulos[i]:
+                    rotulos[i] = novo_rotulo
+                    MUDOU = True
                 
-
-    print(n)
-    print(rotulos)
+    print("rotulos:", rotulos)
+    return rotulos
 
 
 def main():
