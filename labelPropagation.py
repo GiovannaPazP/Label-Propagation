@@ -35,7 +35,7 @@ def labelPropagation(G, MAXITE):
         for i in ordem_vertices:
             vizinhos = list(G.neighbors(i))
 
-            if vizinhos is not None:
+            if len(vizinhos) > 0:
                 print(vizinhos)
                 rotulos_vizinhos = rotulos[vizinhos] #vizinhos é o indice, pega os valores de rotulos correspondente a essa lista de indice -- só numpy
                 print(rotulos_vizinhos)
