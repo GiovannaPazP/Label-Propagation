@@ -25,5 +25,7 @@ Essa rede foi mais instável.
 4 em 10 vezes foi capaz de identificar corretamente as partições, separando em grupos com rótulos {4,5,6} e {0, 1, 2, 3}. (imagem: rede2_2)
 6 em 10 vezes separou em {1,2,3,4,5,6}, sendo o mais comum. (imagem: rede2_1)
 
-# Problemas
 A rede2.csv é mais dificil de dividir as partições, mais instável. Isso ocorre devido ao nó 4 ficar com conexões empatadas e ao envolvimento da aleatoriedade na hora de escolher o rótulo.
+
+# Problemas
+O maior problema foi entender sobre as funções específicas do networkx e também que o label propagation não garante a divisão correta, principalmente em redes instáveis.
