@@ -1,6 +1,7 @@
 import networkx as nx
 import numpy as np
 import matplotlib.pyplot as plt
+from collections import Counter
 
 # ================ CONSTANTES ================
 MAXITE = 10
@@ -9,7 +10,6 @@ MAXITE = 10
 '''
 rede1_duas_comunidades.csv
 rede2.csv
-zachary.csv
 '''
 G = nx.read_edgelist("rede1_duas_comunidades.csv", delimiter=',', nodetype=int)
 
@@ -82,11 +82,30 @@ def normaliza_grupos(rotulos):
     grupos_imutaveis = frozenset(frozenset(g) for g in grupos.values())
     return grupos_imutaveis
 
+def teste(G, MAXITE, n_exec=10):
+    contagem = Counter()
+    restultados = {}
+
+    for _ in range(n_exec):
+        rotulos = labelPropagation(G, MAXITE)
+        grupos = normaliza_grupos(rotulos)
+        contagem[grupos] += 1
+        restultados[grupos] = rotulos 
+
+    return contagem, restultados
+
 def main():
     #np.random.seed(42)
-    print(sorted(G.nodes()))
-    rotulos = labelPropagation(G, MAXITE)
-    print(normaliza_grupos(rotulos))
+    #print(sorted(G.nodes()))
+    #rotulos = labelPropagation(G, MAXITE)
+    #print(normaliza_grupos(rotulos))
     #plot(G, rotulos)
+    contagem, resultados = teste(G, MAXITE)
+
+    print("Partições encontradas:")
+    for particao, frequencia in contagem.most_common():
+        print(f"{frequencia}x a partição {particao}")
+        plot(G, resultados[particao])
+
 main()
 
